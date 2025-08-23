@@ -1,0 +1,24 @@
+# OpenAI API Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Database Configuration
+DB_HOST=mysql
+DB_USER=root
+DB_PASSWORD=password
+DB_NAME=kafka_data
+DB_PORT=3306
+
+# Email Configuration (for fraud notifications)
+EMAIL_SENDER=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password_here
+EMAIL_RECEIVER=your_email@gmail.com
+
+# Kafka Configuration
+KAFKA_BROKER=kafka:9092
+KAFKA_TOPIC=transaction_data
+
+# Service Ports
+STREAMLIT_PORT=8501
+API_PORT=5001
+FEEDBACK_PORT=5000
+MYSQL_PORT=3307

@@ -1,0 +1,94 @@
+version: '3.7'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    depends_on:
+      - zookeeper
+
+  producer:
+    build:
+      context: .
+      dockerfile: Dockerfile-producer
+    container_name: producer
+    restart: "no"
+    depends_on:
+      - kafka
+
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile-consumer
+    container_name: consumer
+    depends_on:
+      - kafka
+      - mysql
+
+  feedback:
+    build:
+      context: .
+      dockerfile: Dockerfile-feedback   # ✅ New Dockerfile for feedback server
+    container_name: feedback
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile-chatbot   # ✅ New Dockerfile for RAG chatbot
+    container_name: chatbot
+    ports:
+      - "8501:8501"
+    depends_on:
+      - mysql
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    env_file:
+      - .env
+
+  chatbot-api:
+    build:
+      context: .
+      dockerfile: Dockerfile-chatbot-api   # ✅ API version for integration
+    container_name: chatbot-api
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mysql
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    env_file:
+      - .env
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: kafka_data
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
