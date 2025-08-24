@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import logging
 import mysql.connector
+import os
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
