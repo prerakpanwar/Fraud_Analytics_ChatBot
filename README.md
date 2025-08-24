@@ -1,11 +1,12 @@
-# 🕵️ Real-Time Fraud Detection System with AI-Powered Analytics
+# Real-Time Fraud Detection System with AI-Powered Analytics
 
-## 📋 **Project Overview**
+https://github.com/user-attachments/assets/39ca6a38-595f-4cd3-bb78-6537b66bbb2e
 
-**Role:** Data Engineer | **Organization:** University of Massachusetts Dartmouth  
-**Duration:** [Duration] | **Team Size:** Individual Project
+## **Project Overview**
 
-### 🎯 **Business Problem & Context**
+**Role:** Data Engineer | **Organization:** University of Massachusetts
+
+### **Business Problem & Context**
 
 Financial institutions face significant challenges in detecting fraudulent transactions in real-time. Traditional batch processing methods result in delayed fraud detection, leading to substantial financial losses and compromised customer security. The University of Massachusetts Dartmouth needed a sophisticated, real-time fraud detection system that could:
 
@@ -15,9 +16,9 @@ Financial institutions face significant challenges in detecting fraudulent trans
 - **Enable real-time alerts** and feedback collection
 - **Scale horizontally** to handle increasing transaction volumes
 
-### 🚀 **My Role & Responsibilities**
+### **My Role & Responsibilities**
 
-As the **Lead Data Engineer**, I designed and implemented a complete end-to-end fraud detection pipeline:
+As the **Data Engineer**, I designed and implemented a complete end-to-end fraud detection pipeline:
 
 #### **Data Engineering & Architecture**
 
@@ -49,7 +50,7 @@ As the **Lead Data Engineer**, I designed and implemented a complete end-to-end 
 
 ---
 
-## 🛠️ **Tools & Technologies Used**
+## **Tools & Technologies Used**
 
 ### **Data Engineering & Streaming**
 
@@ -94,24 +95,24 @@ As the **Lead Data Engineer**, I designed and implemented a complete end-to-end 
 
 ---
 
-## 🏗️ **Technical Architecture**
+## **Technical Architecture**
 
 ### **System Design Overview**
 
 ```
-📊 Transaction Data (CSV)
+Transaction Data (CSV)
     ↓
-🚀 Kafka Producer (Real-time Streaming)
+Kafka Producer (Real-time Streaming)
     ↓
-📡 Kafka Topic (High-throughput Message Queue)
+Kafka Topic (High-throughput Message Queue)
     ↓
-🤖 Kafka Consumer (ML Fraud Detection)
+Kafka Consumer (ML Fraud Detection)
     ↓
-💾 MySQL Database (Fraud Predictions)
+MySQL Database (Fraud Predictions)
     ↓
-🕵️ RAG Chatbot (AI-Powered Analytics)
+RAG Chatbot (AI-Powered Analytics)
     ↓
-🌐 Web Interfaces (Streamlit + REST API)
+Web Interfaces (Streamlit + REST API)
 ```
 
 ### **Microservices Architecture**
@@ -134,7 +135,7 @@ As the **Lead Data Engineer**, I designed and implemented a complete end-to-end 
 
 ---
 
-## 🔧 **Technical Implementation Details**
+## **Technical Implementation Details**
 
 ### **Real-Time Data Streaming**
 
@@ -190,7 +191,7 @@ CREATE TABLE fraud_predictions (
 
 ---
 
-## 🚨 **Challenges & Solutions**
+## **Challenges & Solutions**
 
 ### **Challenge 1: Real-Time Processing Latency**
 
@@ -249,7 +250,7 @@ CREATE TABLE fraud_predictions (
 
 ---
 
-## 📊 **Business Impact & Results**
+## **Business Impact & Results**
 
 ### **Performance Metrics**
 
@@ -282,7 +283,7 @@ CREATE TABLE fraud_predictions (
 
 ---
 
-## 🚀 **Deployment & Operations**
+## **Deployment & Operations**
 
 ### **Docker Containerization**
 
@@ -317,7 +318,7 @@ EMAIL_PASSWORD=app_specific_password
 
 ---
 
-## 🔮 **Future Enhancements**
+## **Future Enhancements**
 
 ### **Planned Improvements**
 
@@ -335,7 +336,7 @@ EMAIL_PASSWORD=app_specific_password
 
 ---
 
-## 📚 **Technical Documentation**
+## **Technical Documentation**
 
 ### **API Endpoints**
 
@@ -362,7 +363,7 @@ SELECT * FROM fraud_predictions WHERE JSON_EXTRACT(full_json, '$.amt') > 100;
 
 ---
 
-## 👨‍💻 **Skills Demonstrated**
+## **Skills Demonstrated**
 
 ### **Data Engineering**
 
