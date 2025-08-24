@@ -16,8 +16,8 @@ Your project contains sensitive information that must be secured before uploadin
 ```bash
 # This file contains your actual credentials and is NOT uploaded to GitHub
 OPENAI_API_KEY=your_actual_openai_key_here
-DB_PASSWORD=password
-EMAIL_PASSWORD=apyu zray zzzi aexq
+DB_PASSWORD=
+EMAIL_PASSWORD=
 ```
 
 ### **2. Update Your OpenAI API Key**
