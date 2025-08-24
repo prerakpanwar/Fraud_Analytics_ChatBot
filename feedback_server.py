@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 DB_CONFIG = {
     "host": "mysql",
     "user": "root",
-    "password": "password",
+    "password": os.getenv("DB_PASSWORD", "password"),
     "database": "kafka_data",
 }
 

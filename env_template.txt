@@ -10,7 +10,7 @@ DB_PORT=3306
 
 # Email Configuration (for fraud notifications)
 EMAIL_SENDER=your_email@gmail.com
-EMAIL_PASSWORD=your_app_password_here
+EMAIL_PASSWORD=your_gmail_app_password_here
 EMAIL_RECEIVER=your_email@gmail.com
 
 # Kafka Configuration

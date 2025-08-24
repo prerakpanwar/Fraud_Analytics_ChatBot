@@ -92,7 +92,7 @@ def create_consumer():
                 group_id="kafka_consumer_group4",
                 enable_auto_commit=True,
                 value_deserializer=lambda m: json.loads(m.decode("utf-8")),
-                auto_offset_reset="earliest",
+                auto_offset_reset="latest",
             )
             logger.info("✅ Connected to Kafka broker")
             return consumer
@@ -166,9 +166,7 @@ def insert_prediction(connection, trans_num, prob, is_fraud, full_json):
 # ✅ Initialize Notifier (use environment vars in production)
 notifier = EmailNotifier(
     sender=os.getenv("EMAIL_SENDER", "panwarprerak98@gmail.com"),
-    password=os.getenv(
-        "EMAIL_PASSWORD", "apyu zray zzzi aexq"
-    ),  # Use environment variable
+    password=os.getenv("EMAIL_PASSWORD", ""),  # Use environment variable
     receiver=os.getenv("EMAIL_RECEIVER", "panwarprerak98@gmail.com"),
 )
 
@@ -185,12 +183,26 @@ logger.info("🚀 Starting to consume transactions and run fraud detection...")
 #     logger.info(f"📦 Received transaction: {transaction}")
 
 counter = 0
+processed_transactions = set()  # Track processed transaction IDs to detect duplicates
 
 for message in consumer:
     transaction = message.value
     counter += 1
-    # logger.info(f"📥 Received transaction #{counter}")
-    logger.info(f"📥 Received transaction #{counter} (ID: {transaction['trans_num']})")
+
+    trans_id = transaction["trans_num"]
+
+    # Check for duplicates
+    if trans_id in processed_transactions:
+        logger.warning(
+            f"🔄 DUPLICATE DETECTED! Transaction #{counter} (ID: {trans_id}) - Already processed"
+        )
+        continue
+    else:
+        processed_transactions.add(trans_id)
+
+    logger.info(
+        f"📥 Received transaction #{counter} (ID: {trans_id}) - Total unique: {len(processed_transactions)}"
+    )
 
     try:
         df = pd.DataFrame([transaction])
@@ -226,3 +238,6 @@ for message in consumer:
 # ✅ Close MySQL on exit
 mysql_connection.close()
 logger.info("✅ MySQL connection closed.")
+logger.info(
+    f"📊 FINAL SUMMARY: Processed {counter} total messages, {len(processed_transactions)} unique transactions"
+)
